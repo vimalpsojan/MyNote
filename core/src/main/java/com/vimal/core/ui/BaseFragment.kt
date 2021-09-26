@@ -1,6 +1,5 @@
 package com.vimal.core.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
@@ -27,8 +26,8 @@ abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes layout: Int) : Fragme
     private var pendingNavigationActionId = 0
     private var pendingNavigationActionBundle: Bundle? = null
     private var pendingNavigateUp = false
-    private var pendingNavigationIntent: Intent? = null
-    private var pendingNavigationActivityClass: Class<*>? = null
+//    private var pendingNavigationIntent: Intent? = null
+//    private var pendingNavigationActivityClass: Class<*>? = null
     private var pendingNavigationFinishCurrent = false
     private var pendingNavDirections: NavDirections? = null
 
@@ -103,8 +102,8 @@ abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes layout: Int) : Fragme
         pendingNavigationActionId = 0
         pendingNavigationActionBundle = null
         pendingNavigateUp = false
-        pendingNavigationIntent = null
-        pendingNavigationActivityClass = null
+//        pendingNavigationIntent = null
+//        pendingNavigationActivityClass = null
         pendingNavigationFinishCurrent = false
         pendingNavDirections = null
     }
