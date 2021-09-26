@@ -1,4 +1,4 @@
-package com.vimal.sample.ui
+package com.vimal.mynote.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -14,8 +14,8 @@ import com.vimal.core.models.LoadingMessageData
 import com.vimal.core.models.MessageData
 import com.vimal.core.ui.BaseActivity
 import com.vimal.core.ui.ToolbarProvider
-import com.vimal.sample.R
-import com.vimal.sample.databinding.ActivityMainBinding
+import com.vimal.mynote.R
+import com.vimal.mynote.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

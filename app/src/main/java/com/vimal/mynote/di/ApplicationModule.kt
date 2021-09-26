@@ -1,7 +1,7 @@
-package com.vimal.sample.di
+package com.vimal.mynote.di
 
-import com.vimal.sample.BuildConfig
-import com.vimal.sample.api.APIService
+import com.vimal.mynote.BuildConfig
+import com.vimal.mynote.api.APIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

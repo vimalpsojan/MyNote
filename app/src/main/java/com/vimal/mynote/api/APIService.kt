@@ -1,4 +1,4 @@
-package com.vimal.sample.api
+package com.vimal.mynote.api
 
 import com.vimal.core.models.DefaultResponse
 import io.reactivex.rxjava3.core.Single

@@ -1,4 +1,4 @@
-package com.vimal.sample
+package com.vimal.mynote
 
 import org.junit.Test
 

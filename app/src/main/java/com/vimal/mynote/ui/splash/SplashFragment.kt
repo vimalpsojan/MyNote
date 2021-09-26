@@ -1,13 +1,12 @@
-package com.vimal.sample.ui.splash
+package com.vimal.mynote.ui.splash
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.vimal.core.ktx.FragmentKtx.viewBinding
 import com.vimal.core.ui.BaseFragment
-import com.vimal.core.ui.ToolbarProvider
-import com.vimal.sample.R
-import com.vimal.sample.databinding.FragmentSplashBinding
+import com.vimal.mynote.R
+import com.vimal.mynote.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

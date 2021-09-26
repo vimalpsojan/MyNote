@@ -1,7 +1,6 @@
-package com.vimal.sample.ui.splash
+package com.vimal.mynote.ui.splash
 
-import com.vimal.sample.R
-import com.vimal.sample.base.SampleViewModel
+import com.vimal.mynote.base.SampleViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers

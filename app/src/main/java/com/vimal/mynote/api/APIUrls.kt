@@ -1,4 +1,4 @@
-package com.vimal.sample.api
+package com.vimal.mynote.api
 
 object APIUrls {
     const val GET_ALL_NUMBERS = "getList"

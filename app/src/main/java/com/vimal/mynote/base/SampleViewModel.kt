@@ -1,4 +1,4 @@
-package com.vimal.sample.base
+package com.vimal.mynote.base
 
 import android.content.Intent
 import com.vimal.core.R
