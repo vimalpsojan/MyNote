@@ -1,4 +1,4 @@
-package com.vimal.mynote.ui.ui.theme
+package com.vimal.mynote.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

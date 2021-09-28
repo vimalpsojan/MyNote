@@ -1,4 +1,4 @@
-package com.vimal.mynote.ui.ui.theme
+package com.vimal.mynote.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

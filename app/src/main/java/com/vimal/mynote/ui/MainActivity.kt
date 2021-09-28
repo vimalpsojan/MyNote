@@ -30,7 +30,7 @@ class MainActivity : BaseActivity(), ToolbarProvider {
     override val appBarConfiguration: AppBarConfiguration by lazy {
         AppBarConfiguration(
                 setOf(
-                        R.id.splashFragment
+
                 )
         )
     }
