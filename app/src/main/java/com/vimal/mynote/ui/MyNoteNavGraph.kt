@@ -12,35 +12,35 @@ import com.vimal.mynote.ui.splash.SplashViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 
 
-object MainDestinations {
-    const val SPLASH = "splash"
-    const val LOGIN = "login"
-    const val REGISTER = "register"
-    const val HOME = "home"
-    const val NOTE = "note"
+enum class MainDestinations {
+    SPLASH, LOGIN, REGISTER, HOME, NOTE, NONE
+}
+
+fun MainDestinations.isNavigation(): Boolean {
+    return this != MainDestinations.NONE
 }
 
 @Composable
 fun MyNoteNavGraph(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = MainDestinations.SPLASH
+    startDestination: String = MainDestinations.SPLASH.name
 ) {
     val actions = remember(navController) { MainActions(navController) }
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(MainDestinations.SPLASH) {
-            val splashViewModel =hiltViewModel<SplashViewModel>()
-            SplashScreen(splashViewModel = splashViewModel,navigateTo = actions.navigateTo)
+        composable(MainDestinations.SPLASH.name) {
+            val splashViewModel = hiltViewModel<SplashViewModel>()
+            SplashScreen(splashViewModel = splashViewModel, navigateTo = actions.navigateTo)
         }
     }
 }
 
 class MainActions(navController: NavHostController) {
 
-    val navigateTo: (String) -> Unit = { navigation: String ->
-        navController.navigate(navigation)
+    val navigateTo: (MainDestinations) -> Unit = { navigation: MainDestinations ->
+        navController.navigate(navigation.name)
     }
 
     val upPress: () -> Unit = {

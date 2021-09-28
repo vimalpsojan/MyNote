@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.systemBarsPadding
 import com.vimal.mynote.R
+import com.vimal.mynote.ui.MainDestinations
+import com.vimal.mynote.ui.isNavigation
 import com.vimal.mynote.ui.theme.MyNoteTheme
 import com.vimal.mynote.ui.utils.InsetAwareTopAppBar
 import com.vimal.mynote.ui.utils.isScrolled
@@ -26,7 +28,7 @@ import com.vimal.mynote.ui.utils.isScrolled
 @Composable
 fun SplashScreen(
     splashViewModel: SplashViewModel,
-    navigateTo: (String) -> Unit,
+    navigateTo: (MainDestinations) -> Unit,
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     val navigation by splashViewModel.navigate.collectAsState()
@@ -35,11 +37,11 @@ fun SplashScreen(
 
 @Composable
 fun SplashScreen(
-    navigate: String,
-    navigateTo: (String) -> Unit,
+    navigate: MainDestinations,
+    navigateTo: (MainDestinations) -> Unit,
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    if(navigate.isNotBlank()){
+    if(navigate.isNavigation()){
         navigateTo(navigate)
       return
     }
@@ -84,7 +86,7 @@ fun SplashScreen(
 fun PreviewSplashScreen() {
     MyNoteTheme {
         SplashScreen(
-            navigate ="",
+            navigate =MainDestinations.NONE,
             navigateTo = {  },
             scaffoldState = rememberScaffoldState()
         )

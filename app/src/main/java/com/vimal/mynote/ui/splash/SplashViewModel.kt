@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(private val repository: SplashViewRepository) :
     ViewModel() {
-    private val _navigate = MutableStateFlow("")
-    val navigate: StateFlow<String> = _navigate.asStateFlow()
+    private val _navigate = MutableStateFlow(MainDestinations.NONE)
+    val navigate: StateFlow<MainDestinations> = _navigate.asStateFlow()
 
     init {
         Observable.timer(3, TimeUnit.SECONDS)
