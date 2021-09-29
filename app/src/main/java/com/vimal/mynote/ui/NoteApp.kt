@@ -1,4 +1,4 @@
-package com.vimal.mynote
+package com.vimal.mynote.ui
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.vimal.mynote.ui.MyNoteNavGraph
 import com.vimal.mynote.ui.theme.MyNoteTheme
 
 @Composable
@@ -20,7 +19,7 @@ fun NoteApp() {
                 systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = darkIcons)
             }
             val navController = rememberNavController()
-            MyNoteNavGraph(
+            AppNavGraph(
                 navController = navController
             )
         }

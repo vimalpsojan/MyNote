@@ -6,6 +6,7 @@ import com.vimal.core.ktx.PreferenceHelper
 import com.vimal.core.ktx.PreferenceHelper.get
 import com.vimal.core.ktx.PreferenceHelper.set
 import com.vimal.mynote.data.repositories.PreferenceProvider
+import com.vimal.mynote.models.response.LoginResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -15,6 +16,8 @@ class DefaultPreference @Inject constructor(@ApplicationContext context: Context
     object Fields {
         const val SELECTED_THEME = "selected_theme_dark"
         const val AUTH_TOKEN = "auth_token"
+        const val FIRST_NAME = "first_name"
+        const val LAST_NAME = "last_name"
     }
 
     private val sharedPreferences by lazy {
@@ -35,5 +38,11 @@ class DefaultPreference @Inject constructor(@ApplicationContext context: Context
 
     override fun setAuthToken(token: String?) {
         sharedPreferences[Fields.AUTH_TOKEN] = token
+    }
+
+    override fun setLoginData(loginResponse: LoginResponse) {
+        setAuthToken(loginResponse.auth)
+        sharedPreferences[Fields.FIRST_NAME] = loginResponse.firstName
+        sharedPreferences[Fields.LAST_NAME] = loginResponse.lastName
     }
 }
