@@ -1,5 +1,7 @@
 package com.vimal.mynote.ui.utils
 
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +21,8 @@ fun OutLIneInput(
     value: String,
     onValueChange: (String) -> Unit,
     singleLine: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     modifier: Modifier = Modifier,
     hint: String? = null,
 ) {
@@ -35,7 +39,10 @@ fun OutLIneInput(
                 NormalTextView(value = it)
             }
 
-        }
+        },
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions
+
     )
 }
 
@@ -46,6 +53,8 @@ fun OutLInePasswordInput(
     onValueChange: (String) -> Unit,
     showPassword: Boolean = false,
     mask: Char = '\u2022',
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     modifier: Modifier = Modifier,
     hint: String? = null,
 ) {
@@ -67,7 +76,9 @@ fun OutLInePasswordInput(
         if (showPassword)
             VisualTransformation.None
         else
-            PasswordVisualTransformation(mask)
+            PasswordVisualTransformation(mask),
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions
     )
 }
 

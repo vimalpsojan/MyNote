@@ -1,21 +1,33 @@
 package com.vimal.mynote.ui.login
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.google.accompanist.insets.systemBarsPadding
+import com.vimal.core.models.Event
+import com.vimal.core.models.LoadingMessageData
 import com.vimal.mynote.R
 import com.vimal.mynote.ui.theme.MyNoteTheme
 import com.vimal.mynote.ui.utils.*
@@ -29,6 +41,7 @@ fun LoginScreen(
     val userName by loginViewModel.userName.observeAsState()
     val password by loginViewModel.password.observeAsState()
     val enableLogin by loginViewModel.enableLogin.observeAsState()
+    val loadingMessageData by loginViewModel.loading.observeAsState()
     LoginScreen(
         userName = userName,
         onUserNmeChange = loginViewModel.onUserName,
@@ -36,6 +49,7 @@ fun LoginScreen(
         onPasswordChange = loginViewModel.onPassword,
         enableLogin = enableLogin ?: false,
         onLogin = loginViewModel.onLogin,
+        loadingMessageData = loadingMessageData,
         scaffoldState = scaffoldState
     )
 }
@@ -48,6 +62,7 @@ fun LoginScreen(
     onPasswordChange: (String) -> Unit,
     enableLogin: Boolean,
     onLogin: () -> Unit,
+    loadingMessageData: Event<LoadingMessageData>? = null,
     scaffoldState: ScaffoldState
 ) {
     val scrollState = rememberLazyListState()
@@ -91,6 +106,7 @@ fun LoginScreen(
             onPasswordChange = onPasswordChange,
             enableLogin = enableLogin,
             onLogin = onLogin,
+            loadingMessageData = loadingMessageData,
             modifier = modifier
         )
     }
@@ -104,31 +120,83 @@ fun CreteLoginForm(
     onPasswordChange: (String) -> Unit,
     enableLogin: Boolean,
     onLogin: () -> Unit,
+    loadingMessageData: Event<LoadingMessageData>? = null,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    ConstraintLayout(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(start = 20.dp, end = 20.dp, top = 0.dp, bottom = 0.dp)
     ) {
-        val inputModifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
+        val (usernameTxt, passwordTxt, loginBtn) = createRefs()
+        val localFocusManager = LocalFocusManager.current
         OutLIneInput(
             label = stringResource(id = R.string.user_name),
             value = userName ?: "",
             onValueChange = onUserNmeChange,
             singleLine = true,
-            modifier = inputModifier
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next,
+                autoCorrect = false
+            ),
+            keyboardActions = KeyboardActions(onNext = {
+                localFocusManager.moveFocus(FocusDirection.Down)
+            }),
+            modifier = Modifier.constrainAs(usernameTxt) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                width = Dimension.fillToConstraints
+            }
         )
         OutLInePasswordInput(
             label = stringResource(id = R.string.password),
             value = password ?: "",
             onValueChange = onPasswordChange,
-            modifier = inputModifier
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = if (enableLogin) ImeAction.Done else ImeAction.Next,
+                autoCorrect = false
+            ),
+            keyboardActions = KeyboardActions(
+                onNext = { localFocusManager.clearFocus() },
+                onDone = {
+                    localFocusManager.clearFocus()
+                    onLogin()
+                }),
+            modifier = Modifier.constrainAs(passwordTxt) {
+                top.linkTo(usernameTxt.bottom, 10.dp)
+                start.linkTo(usernameTxt.start)
+                end.linkTo(usernameTxt.end)
+                width = Dimension.fillToConstraints
+            }
         )
-        Button(onClick = onLogin,enabled = enableLogin,modifier = inputModifier) {
-            NormalTextView(value = stringResource(id = R.string.login))
+        if (loadingMessageData?.get()?.isLoading == true) {
+            CircularProgressIndicator(modifier = Modifier.constrainAs(loginBtn) {
+                start.linkTo(passwordTxt.start)
+                end.linkTo(passwordTxt.end)
+                top.linkTo(passwordTxt.bottom)
+                bottom.linkTo(parent.bottom)
+            })
+        } else {
+            Button(
+                onClick = onLogin,
+                enabled = enableLogin,
+                modifier = Modifier.constrainAs(loginBtn) {
+                    start.linkTo(passwordTxt.start)
+                    end.linkTo(passwordTxt.end)
+                    linkTo(
+                        top = passwordTxt.bottom,
+                        bottom = parent.bottom,
+                        bottomMargin = 20.dp,
+                        bias = 1F
+                    )
+                    width = Dimension.fillToConstraints
+
+                }) {
+                NormalTextView(value = stringResource(id = R.string.login))
+            }
         }
     }
 }

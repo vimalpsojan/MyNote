@@ -1,17 +1,17 @@
 package com.vimal.mynote.ui.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vimal.mynote.data.repositories.LoginRepository
 import com.vimal.mynote.ui.BaseViewModel
+import com.vimal.mynote.ui.MainDestinations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.kotlin.addTo
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: LoginRepository) :
     BaseViewModel() {
+
     private val _userName = MutableLiveData<String>()
     val userName: LiveData<String> = _userName
 
@@ -53,10 +53,16 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
     }
 
     private fun callLoginAPI(userName: String, password: String) {
+        showLoading()
         repository.login(userName, password).subscribe({
-            Log.v("DATA", "Success")
+            hideLoading()
+            navigate(
+                destination = MainDestinations.HOME,
+                singleTop = true,
+                popUpTo = MainDestinations.MAIN
+            )
         }, {
-            it.printStackTrace()
+            hideLoading()
         }).add()
     }
 }

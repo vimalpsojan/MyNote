@@ -17,6 +17,7 @@ fun NoteApp() {
             val darkIcons = MaterialTheme.colors.isLight
             SideEffect {
                 systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = darkIcons)
+                systemUiController.setNavigationBarColor(Color.Black,darkIcons = true)
             }
             val navController = rememberNavController()
             AppNavGraph(

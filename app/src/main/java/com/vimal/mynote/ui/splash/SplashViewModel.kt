@@ -25,10 +25,9 @@ class SplashViewModel @Inject constructor(private val repository: SplashViewRepo
 
     private fun gotoNextScreen() {
         navigate(
-            if (repository.isLoginUser())
-                MainDestinations.HOME
-            else
-                MainDestinations.LOGIN
+            destination = if (repository.isLoginUser()) MainDestinations.HOME else MainDestinations.LOGIN,
+            singleTop = true,
+            popUpTo = MainDestinations.MAIN
         )
     }
 }

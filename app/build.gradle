@@ -6,7 +6,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-def Base_URL = '"http://localhost/DemoApi/"'
+def Base_URL = '"http://api.mynote.com/DemoApi/"'
 
 android {
     compileSdkVersion 31
@@ -121,6 +121,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
     implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    implementation "androidx.constraintlayout:constraintlayout-compose:$constraintlayout_compose"
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junit"

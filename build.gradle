@@ -47,6 +47,7 @@ ext {
     navigation_compose = "2.4.0-alpha09"
     accompanist_version = "0.18.0"
     coroutines_version = "1.5.2"
+    constraintlayout_compose = "1.0.0-rc01"
 
     //test
     junit = "4.13"

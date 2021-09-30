@@ -18,7 +18,7 @@ interface APIService {
         @Query("intEndNo") end: Int
     ): Single<Result<DefaultResponse<List<String>>>>
 
-    @POST(APIUrls.GET_ALL_NUMBERS)
+    @POST(APIUrls.LOGIN)
     fun login(@Body request: LoginRequest): Single<Result<DefaultResponse<LoginResponse>>>
 
 }
