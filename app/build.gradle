@@ -25,6 +25,23 @@ android {
         }
     }
 
+    flavorDimensions "noteFlavor"
+    productFlavors{
+        production {
+            dimension = 'noteFlavor'
+        }
+        fakeAPI{
+            dimension = 'noteFlavor'
+        }
+        fakeAPINoDB{
+            dimension = 'noteFlavor'
+        }
+        fakeAPINoDBNoPref{
+            dimension = 'noteFlavor'
+        }
+
+    }
+
     buildTypes {
         release {
             minifyEnabled false

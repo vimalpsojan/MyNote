@@ -1,4 +1,4 @@
-package com.vimal.mynote.di.preference
+package com.vimal.mynote.di
 
 import com.vimal.mynote.data.datasources.DefaultPreference
 import com.vimal.mynote.data.repositories.PreferenceProvider

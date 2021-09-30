@@ -1,8 +1,10 @@
 package com.vimal.mynote.ui.login
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -13,7 +15,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,7 +31,10 @@ import com.vimal.core.models.Event
 import com.vimal.core.models.LoadingMessageData
 import com.vimal.mynote.R
 import com.vimal.mynote.ui.theme.MyNoteTheme
-import com.vimal.mynote.ui.utils.*
+import com.vimal.mynote.ui.utils.InsetAwareTopAppBar
+import com.vimal.mynote.ui.utils.OutLIneInput
+import com.vimal.mynote.ui.utils.OutLInePasswordInput
+import com.vimal.mynote.ui.utils.isScrolled
 
 @Composable
 fun LoginScreen(
@@ -195,7 +199,7 @@ fun CreteLoginForm(
                     width = Dimension.fillToConstraints
 
                 }) {
-                NormalTextView(value = stringResource(id = R.string.login))
+                Text(text = stringResource(id = R.string.login))
             }
         }
     }

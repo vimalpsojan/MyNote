@@ -11,11 +11,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun NormalTextView(value: String, modifier: Modifier = Modifier) {
-    Text(text = value, modifier)
-}
-
-@Composable
 fun OutLIneInput(
     label: String,
     value: String,
@@ -32,11 +27,11 @@ fun OutLIneInput(
         singleLine = singleLine,
         modifier = modifier,
         label = {
-            NormalTextView(value = label)
+            Text(text = label)
         },
         placeholder = {
             hint?.let {
-                NormalTextView(value = it)
+                Text(text = value)
             }
 
         },
@@ -63,11 +58,11 @@ fun OutLInePasswordInput(
         onValueChange = onValueChange,
         modifier = modifier,
         label = {
-            NormalTextView(value = label)
+            Text(text = label)
         },
         placeholder = {
             hint?.let {
-                NormalTextView(value = it)
+                Text(text = it)
             }
 
         },
@@ -80,12 +75,6 @@ fun OutLInePasswordInput(
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions
     )
-}
-
-@Preview("NormalTextView")
-@Composable
-fun NormalTextView() {
-    NormalTextView("Hello")
 }
 
 @Preview("OutLIneInput")

@@ -8,5 +8,5 @@ data class APIResult<T>(
         val isSuccess: Boolean = false,
         val data: T? = null,
         val error: Error? = null,
-        val message: String?
+        val message: String? = null
 )
