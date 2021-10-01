@@ -54,6 +54,8 @@ dependencies {
     implementation "io.ktor:ktor-client-logging-jvm:$ktorVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_json"
 
+    implementation "io.insert-koin:koin-core:$koin_version"
+
     implementation "com.google.dagger:hilt-android:$hilt_versiom"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_versiom"
 

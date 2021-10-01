@@ -3,13 +3,10 @@ package com.vimal.mynote.ui.splash
 import com.vimal.mynote.data.repositories.SplashViewRepository
 import com.vimal.core.viewmodel.BaseViewModel
 import com.vimal.core.vnavigation.MainDestinations
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
-@HiltViewModel
-class SplashViewModel @Inject constructor(private val repository: SplashViewRepository) :
+class SplashViewModel constructor(private val repository: SplashViewRepository) :
     BaseViewModel() {
 
     init {
