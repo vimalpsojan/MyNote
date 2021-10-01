@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -70,11 +69,8 @@ dependencies {
 
     implementation "androidx.navigation:navigation-compose:$navigation_compose"
 
-    implementation "com.google.dagger:hilt-android:$hilt_versiom"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_versiom"
-    kapt "androidx.hilt:hilt-compiler:$hilt_view_model"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose"
-
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+    
     implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
     implementation "io.ktor:ktor-client-json:$ktorVersion"
     implementation "io.ktor:ktor-client-serialization-jvm:$ktorVersion"
@@ -85,4 +81,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+
+    // Koin Test for Kotlin Multiplatform
+    testImplementation "io.insert-koin:koin-test:$koin_version"
 }
