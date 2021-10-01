@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vimal.andoidbase.navigation.NavigationActions
 import com.vimal.core.vnavigation.MainDestinations
+import com.vimal.home.ui.HomeScreen
+import com.vimal.home.ui.HomeViewModel
 //import com.vimal.home.ui.HomeScreen
 //import com.vimal.home.ui.HomeViewModel
 import com.vimal.login.ui.LoginScreen
@@ -38,11 +40,11 @@ fun AppNavGraph(
             viewModel.navigationActions = actions
             LoginScreen(viewModel = viewModel)
         }
-//        composable(MainDestinations.HOME.name) {
-//            val viewModel = hiltViewModel<HomeViewModel>()
-//            viewModel.navigationActions = actions
-//            HomeScreen(viewModel = viewModel)
-//        }
+        composable(MainDestinations.HOME.name) {
+            val viewModel = hiltViewModel<HomeViewModel>()
+            viewModel.navigationActions = actions
+            HomeScreen(viewModel = viewModel)
+        }
     }
 }
 

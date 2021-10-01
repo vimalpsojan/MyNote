@@ -23,8 +23,8 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun httpClient(): HttpClient{
-        return HttpClient(OkHttp){
+    fun httpClient(): HttpClient {
+        return HttpClient(OkHttp) {
             // Json
             install(JsonFeature) {
                 serializer = KotlinxSerializer(json)
@@ -48,7 +48,10 @@ class ApplicationModule {
             defaultRequest {
                 host = BuildConfig.BASE_URL
                 url {
-                    protocol = URLProtocol.HTTP
+                    protocol = if (BuildConfig.isDev)
+                        URLProtocol.HTTP
+                    else
+                        URLProtocol.HTTP
                 }
 //                header("key","value")
 //                parameter("api_key", "some_api_key")

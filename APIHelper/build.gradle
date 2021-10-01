@@ -6,7 +6,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-def Base_URL = '"http://api.mynote.com/DemoApi/"'
+def Base_URL_DEV = '"api.mynote.com/DemoApi"'
+def Base_URL = '"api.mynote.com/v1"'
 
 android {
     compileSdk 31
@@ -22,8 +23,16 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            buildConfigField "boolean", "isDev", "false"
+            buildConfigField("String", "BASE_URL", Base_URL_DEV)
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            buildConfigField "boolean", "isDev", "true"
+            buildConfigField("String", "BASE_URL", Base_URL)
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
