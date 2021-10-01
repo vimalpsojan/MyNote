@@ -1,36 +1,38 @@
 package com.vimal.apihelper.models
 
-import org.json.JSONObject
+import androidx.annotation.Keep
+import kotlinx.serialization.SerialName
 import java.io.Serializable
 
+@Keep
+@kotlinx.serialization.Serializable
 class APIError : Serializable {
 
     var errorCode: Int = 500
-    var message: String? = null
-    var trace: String? = null
-    var parameters: JSONObject? = null
-    var url: String? = null
-    var method: String? = null
 
-//    companion object {
-//
-//        @JvmStatic
-//        fun <T> toError(response: Response<T>): APIError {
-//            val error = APIError()
-//            if (response.body() != null) {
-//                val body = (response.body() as DefaultResponse<*>)
-//                error.message = body.message
-//                error.trace = body.reason
-//                error.errorCode = body.code ?: 400
-//            } else {
-//                val responseJson = JSONObject(response.errorBody()?.string() ?: "{}")
-//                error.message = responseJson.optString("message")
-//                error.trace = responseJson.optString("trace")
-//                error.parameters = responseJson.optJSONObject("parameters")
-//                error.errorCode = response.code()
-//            }
-//            error.url = response.raw().request.url.toString()
-//            return error
-//        }
-//    }
+    @SerialName("message")
+    var message: String? = null
+    @SerialName("trace")
+    var trace: String? = null
+
+    companion object{
+
+        const val DECODE_ERROR = 1005
+        const val ADDRESS_NOT_FOUND = 404
+
+        fun crateOnDecode(trace:String):APIError{
+            val error =APIError()
+            error.errorCode = DECODE_ERROR
+            error.message = "Failed of decode Error"
+            error.trace = trace
+            return error
+        }
+        fun unresolvedAddressException(message:String,trace:String):APIError{
+            val error =APIError()
+            error.errorCode = ADDRESS_NOT_FOUND
+            error.message = message
+            error.trace = trace
+            return error
+        }
+    }
 }

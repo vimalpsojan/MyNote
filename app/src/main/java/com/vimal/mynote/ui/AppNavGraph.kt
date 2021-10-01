@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vimal.core.navigation.NavigationActions
+import com.vimal.login.ui.LoginScreen
+import com.vimal.login.ui.LoginViewModel
 import com.vimal.mynote.ui.splash.SplashScreen
 import com.vimal.mynote.ui.splash.SplashViewModel
 
@@ -31,6 +33,11 @@ fun AppNavGraph(
             val splashViewModel = hiltViewModel<SplashViewModel>()
             splashViewModel.navigationActions = actions
             SplashScreen(splashViewModel = splashViewModel)
+        }
+        composable(MainDestinations.LOGIN.name) {
+            val loginViewModel = hiltViewModel<LoginViewModel>()
+            loginViewModel.navigationActions = actions
+            LoginScreen(viewModel = loginViewModel)
         }
     }
 }

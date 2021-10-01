@@ -13,7 +13,7 @@ abstract class ComposeBaseViewModel<Navigation> : ViewModel() {
     lateinit var navigationActions: NavigationActions<Navigation>
 
     private val _loading = MutableStateFlow<Event<LoadingMessageData>?>(null)
-    private val loading = _loading.asStateFlow()
+    val loading = _loading.asStateFlow()
 
     private val _infoMessage = MutableStateFlow<Event<MessageData>?>(null)
     val infoMessage = _infoMessage.asStateFlow()
