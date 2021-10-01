@@ -1,4 +1,4 @@
-package com.vimal.core.ui
+package com.vimal.core.navigation
 
 interface NavigationActions<T> {
     val navigateTo: (T,singleTop:Boolean,popUpTo:T?) -> Unit

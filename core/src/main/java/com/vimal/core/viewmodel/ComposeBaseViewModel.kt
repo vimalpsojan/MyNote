@@ -1,24 +1,22 @@
 package com.vimal.core.viewmodel
 
-import androidx.annotation.StringRes
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vimal.core.R
 import com.vimal.core.models.Event
 import com.vimal.core.models.LoadingMessageData
 import com.vimal.core.models.MessageData
-import com.vimal.core.ui.NavigationActions
+import com.vimal.core.navigation.NavigationActions
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 abstract class ComposeBaseViewModel<Navigation> : ViewModel() {
 
     lateinit var navigationActions: NavigationActions<Navigation>
 
-    private val loadingLiveData = MutableLiveData<Event<LoadingMessageData>>()
-    val loading: LiveData<Event<LoadingMessageData>> = loadingLiveData
+    private val _loading = MutableStateFlow<Event<LoadingMessageData>?>(null)
+    private val loading = _loading.asStateFlow()
 
-    private val infoMessageLiveData = MutableLiveData<Event<MessageData>>()
-    val infoMessage: LiveData<Event<MessageData>> = infoMessageLiveData
+    private val _infoMessage = MutableStateFlow<Event<MessageData>?>(null)
+    val infoMessage = _infoMessage.asStateFlow()
 
     fun navigate(destination: Navigation, singleTop:Boolean=false, popUpTo:Navigation?=null) {
         navigationActions.navigateTo(destination,singleTop,popUpTo)
@@ -29,13 +27,12 @@ abstract class ComposeBaseViewModel<Navigation> : ViewModel() {
     }
 
     fun showInfoMessage(message: MessageData) {
-        infoMessageLiveData.value = Event(message)
+        _infoMessage.value = Event(message)
     }
 
-    fun showLoading(@StringRes message: Int = R.string.loading) {
+    fun showLoading(message: String) {
         val messageData = LoadingMessageData()
         messageData.isLoading = true
-        messageData.messageRes = message
         showLoading(messageData)
     }
 
@@ -46,6 +43,7 @@ abstract class ComposeBaseViewModel<Navigation> : ViewModel() {
     }
 
     open fun showLoading(message: LoadingMessageData) {
-        loadingLiveData.value = Event(message)
+        _loading.value = Event(message)
     }
+
 }

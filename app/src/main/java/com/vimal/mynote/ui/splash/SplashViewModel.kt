@@ -4,9 +4,7 @@ import com.vimal.mynote.data.repositories.SplashViewRepository
 import com.vimal.mynote.ui.BaseViewModel
 import com.vimal.mynote.ui.MainDestinations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -15,12 +13,12 @@ class SplashViewModel @Inject constructor(private val repository: SplashViewRepo
     BaseViewModel() {
 
     init {
-        Observable.timer(3, TimeUnit.SECONDS)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(TimeUnit.SECONDS.toMillis(3))
+            withContext(Dispatchers.Main){
                 gotoNextScreen()
             }
+        }
     }
 
     private fun gotoNextScreen() {

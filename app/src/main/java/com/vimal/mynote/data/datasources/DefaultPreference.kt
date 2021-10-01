@@ -1,12 +1,10 @@
 package com.vimal.mynote.data.datasources
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate
 import com.vimal.core.ktx.PreferenceHelper
 import com.vimal.core.ktx.PreferenceHelper.get
 import com.vimal.core.ktx.PreferenceHelper.set
 import com.vimal.mynote.data.repositories.PreferenceProvider
-import com.vimal.mynote.models.response.LoginResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -24,13 +22,13 @@ class DefaultPreference @Inject constructor(@ApplicationContext context: Context
         PreferenceHelper.customPrefs(context, "")
     }
 
-    override fun setTheme(theme: Int) {
-        sharedPreferences[Fields.SELECTED_THEME] = theme
-    }
-
-    override fun getTheme(): Int {
-        return sharedPreferences[Fields.SELECTED_THEME, AppCompatDelegate.MODE_NIGHT_UNSPECIFIED]
-    }
+//    override fun setTheme(theme: Int) {
+//        sharedPreferences[Fields.SELECTED_THEME] = theme
+//    }
+//
+//    override fun getTheme(): Int {
+//        return sharedPreferences[Fields.SELECTED_THEME, AppCompatDelegate.MODE_NIGHT_UNSPECIFIED]
+//    }
 
     override fun getAuthToken(): String? {
         return sharedPreferences[Fields.AUTH_TOKEN]
@@ -40,9 +38,4 @@ class DefaultPreference @Inject constructor(@ApplicationContext context: Context
         sharedPreferences[Fields.AUTH_TOKEN] = token
     }
 
-    override fun setLoginData(loginResponse: LoginResponse) {
-        setAuthToken(loginResponse.auth)
-        sharedPreferences[Fields.FIRST_NAME] = loginResponse.firstName
-        sharedPreferences[Fields.LAST_NAME] = loginResponse.lastName
-    }
 }

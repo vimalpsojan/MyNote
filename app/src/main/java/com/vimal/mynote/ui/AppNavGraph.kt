@@ -7,14 +7,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.vimal.core.ui.NavigationActions
-import com.vimal.mynote.ui.home.HomeScreen
-import com.vimal.mynote.ui.home.HomeViewModel
-import com.vimal.mynote.ui.login.LoginScreen
-import com.vimal.mynote.ui.login.LoginViewModel
+import com.vimal.core.navigation.NavigationActions
 import com.vimal.mynote.ui.splash.SplashScreen
 import com.vimal.mynote.ui.splash.SplashViewModel
-
 
 enum class MainDestinations {
     MAIN, SPLASH, LOGIN, HOME
@@ -36,16 +31,6 @@ fun AppNavGraph(
             val splashViewModel = hiltViewModel<SplashViewModel>()
             splashViewModel.navigationActions = actions
             SplashScreen(splashViewModel = splashViewModel)
-        }
-        composable(MainDestinations.LOGIN.name) {
-            val loginViewModel = hiltViewModel<LoginViewModel>()
-            loginViewModel.navigationActions = actions
-            LoginScreen(loginViewModel = loginViewModel)
-        }
-        composable(MainDestinations.HOME.name){
-            val homeViewModel = hiltViewModel<HomeViewModel>()
-            homeViewModel.navigationActions = actions
-            HomeScreen(viewModel = homeViewModel)
         }
     }
 }

@@ -9,6 +9,7 @@ import com.vimal.core.models.Event
  *
  * [onEventUnhandledContent] is *only* called if the [Event]'s contents has not been handled.
  */
+//TODO Change for State Flow
 class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Observer<Event<T>> {
     override fun onChanged(event: Event<T>?) {
         event?.get()?.let { value ->

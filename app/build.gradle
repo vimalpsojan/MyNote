@@ -2,44 +2,23 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
 }
 
-def Base_URL = '"http://api.mynote.com/DemoApi/"'
-
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.vimal.mynote"
-        minSdkVersion 21
-        targetSdkVersion 31
+        minSdk 21
+        targetSdk 31
         versionCode 1
-        versionName "1.0"
-        buildConfigField("String", "BASE_URL", Base_URL)
+        versionName "1.0.1"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
-    }
-
-    flavorDimensions "noteFlavor"
-    productFlavors{
-        production {
-            dimension = 'noteFlavor'
-        }
-        fakeAPI{
-            dimension = 'noteFlavor'
-        }
-        fakeAPINoDB{
-            dimension = 'noteFlavor'
-        }
-        fakeAPINoDBNoPref{
-            dimension = 'noteFlavor'
-        }
-
     }
 
     buildTypes {
@@ -48,124 +27,52 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = jvmTarget
+        useIR = true
     }
-
     buildFeatures {
-        dataBinding true//TODO Remove
         compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion kotlinVersion
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(":core")
-    implementation project(":advancedrecyclerview")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "androidx.core:core-ktx:$core_ktx"
-    implementation "androidx.appcompat:appcompat:$app_compat"
-    implementation "com.google.android.material:material:$material"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-    implementation "androidx.legacy:legacy-support-v4:$legacy_support"
+//    implementation "androidx.appcompat:appcompat:$app_compat"
+//    implementation "com.google.android.material:material:$material"
 
-    // RxJava
-    implementation "io.reactivex.rxjava3:rxjava:$rxjava"
-    //RxKotline
-    implementation "io.reactivex.rxjava3:rxkotlin:$rxkotlin"
-    // RxAndroid
-    implementation "io.reactivex.rxjava3:rxandroid:$rxandroid"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.activity:activity-compose:$activity_compose"
 
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"//TODO Remove
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"//TODO Remove
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"//TODO Remove
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_viewmodel_compose"
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-compose:$navigation_compose"
 
-    ///retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.google.code.gson:gson:$gson"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_intercepto"
-    //RxJava retrofit
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit"
-
-    //Hilt core dependencies Injection
     implementation "com.google.dagger:hilt-android:$hilt_versiom"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_versiom"
     kapt "androidx.hilt:hilt-compiler:$hilt_view_model"
-    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose"
 
-
-
-    //Compose
-    implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.compose.foundation:foundation:$compose_version"
-    implementation "androidx.compose.animation:animation:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-
-    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
-    implementation "androidx.constraintlayout:constraintlayout-compose:$constraintlayout_compose"
-
-    // Dependencies for local unit tests
     testImplementation "junit:junit:$junit"
-    testImplementation "org.hamcrest:hamcrest-all:$hamcrest"
-    testImplementation "androidx.arch.core:core-testing:$core_testing"
-    testImplementation "org.robolectric:robolectric:$robolectric"
-
-    //Dependencies for instrumentation tests
-    androidTestImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
-    androidTestImplementation "androidx.arch.core:core-testing:$core_testing"
-    androidTestImplementation "androidx.test:rules:$test_rules"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-
-    // Hilt
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_versiom"
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_versiom"
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-    debugImplementation "androidx.test:core-ktx:$test_core_ktx"
-
-    androidTestUtil "androidx.test:orchestrator:$orchestrator"
-
-    //compose
-    androidTestImplementation "androidx.compose.ui:ui-test:$compose_version"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
-    // Robolectric dependencies
-    testImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 }
