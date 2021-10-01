@@ -1,4 +1,16 @@
-include ':advancedrecyclerview'
-include ':core'
-include ':app'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 rootProject.name = "MyNote"
+include ':app'
+include ':core'
+include ':APIHelper'
+include ':Login'
+include ':Home'
+include ':AndoidBase'
+include ':UIUtils'
+include ':Resources'

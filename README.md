@@ -1,2 +1,2 @@
-# AndroisBaseTemplate
-Basic Project Setup for Android app MVVM or MVI
+# MVI Compose KMM
+Android Compose Test app with multi module with easy KMM Support  
