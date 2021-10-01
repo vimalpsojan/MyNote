@@ -1,4 +1,4 @@
-package com.vimal.advancedrecyclerview
+package com.vimal.apihelper
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.vimal.advancedrecyclerview.test", appContext.packageName)
+        assertEquals("com.vimal.apihelper.test", appContext.packageName)
     }
 }

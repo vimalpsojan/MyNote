@@ -1,4 +1,4 @@
-package com.vimal.advancedrecyclerview
+package com.vimal.apihelper
 
 import org.junit.Test
 
