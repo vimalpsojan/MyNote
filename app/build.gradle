@@ -50,9 +50,11 @@ android {
 }
 
 dependencies {
-    api project(":core")
-    api project(":APIHelper")
+    implementation project(":core")
+    implementation project(":UIUtils")
+    implementation project(":Resources")
     implementation project(":Login")
+    implementation project(":Home")
     implementation "androidx.core:core-ktx:$core_ktx"
 //    implementation "androidx.appcompat:appcompat:$app_compat"
 //    implementation "com.google.android.material:material:$material"
@@ -71,6 +73,12 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_versiom"
     kapt "androidx.hilt:hilt-compiler:$hilt_view_model"
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose"
+
+    implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
+    implementation "io.ktor:ktor-client-json:$ktorVersion"
+    implementation "io.ktor:ktor-client-serialization-jvm:$ktorVersion"
+    implementation "io.ktor:ktor-client-logging-jvm:$ktorVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_json"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"

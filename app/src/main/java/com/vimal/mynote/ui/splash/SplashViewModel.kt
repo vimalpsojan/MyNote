@@ -1,8 +1,8 @@
 package com.vimal.mynote.ui.splash
 
 import com.vimal.mynote.data.repositories.SplashViewRepository
-import com.vimal.mynote.ui.BaseViewModel
-import com.vimal.mynote.ui.MainDestinations
+import com.vimal.core.viewmodel.BaseViewModel
+import com.vimal.core.vnavigation.MainDestinations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit

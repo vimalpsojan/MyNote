@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.vimal.mynote.ui.theme.MyNoteTheme
+import com.vimal.uiutils.ui.theme.MyNoteTheme
 
 @Composable
 fun NoteApp() {

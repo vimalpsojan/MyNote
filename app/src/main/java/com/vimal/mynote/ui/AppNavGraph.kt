@@ -7,15 +7,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.vimal.core.navigation.NavigationActions
+import com.vimal.andoidbase.navigation.NavigationActions
+import com.vimal.core.vnavigation.MainDestinations
+//import com.vimal.home.ui.HomeScreen
+//import com.vimal.home.ui.HomeViewModel
 import com.vimal.login.ui.LoginScreen
 import com.vimal.login.ui.LoginViewModel
 import com.vimal.mynote.ui.splash.SplashScreen
 import com.vimal.mynote.ui.splash.SplashViewModel
-
-enum class MainDestinations {
-    MAIN, SPLASH, LOGIN, HOME
-}
 
 @Composable
 fun AppNavGraph(
@@ -30,15 +29,20 @@ fun AppNavGraph(
         route = MainDestinations.MAIN.name
     ) {
         composable(MainDestinations.SPLASH.name) {
-            val splashViewModel = hiltViewModel<SplashViewModel>()
-            splashViewModel.navigationActions = actions
-            SplashScreen(splashViewModel = splashViewModel)
+            val viewModel = hiltViewModel<SplashViewModel>()
+            viewModel.navigationActions = actions
+            SplashScreen(splashViewModel = viewModel)
         }
         composable(MainDestinations.LOGIN.name) {
-            val loginViewModel = hiltViewModel<LoginViewModel>()
-            loginViewModel.navigationActions = actions
-            LoginScreen(viewModel = loginViewModel)
+            val viewModel = hiltViewModel<LoginViewModel>()
+            viewModel.navigationActions = actions
+            LoginScreen(viewModel = viewModel)
         }
+//        composable(MainDestinations.HOME.name) {
+//            val viewModel = hiltViewModel<HomeViewModel>()
+//            viewModel.navigationActions = actions
+//            HomeScreen(viewModel = viewModel)
+//        }
     }
 }
 

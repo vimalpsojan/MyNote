@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.vimal.mynote.R
-import com.vimal.mynote.ui.theme.MyNoteTheme
+import com.vimal.uiutils.ui.theme.MyNoteTheme
 
 @Composable
 fun SplashScreen(

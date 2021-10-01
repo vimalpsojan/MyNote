@@ -1,9 +1,9 @@
 package com.vimal.mynote.data.datasources
 
 import android.content.Context
-import com.vimal.core.ktx.PreferenceHelper
-import com.vimal.core.ktx.PreferenceHelper.get
-import com.vimal.core.ktx.PreferenceHelper.set
+import com.vimal.andoidbase.ktx.PreferenceHelper
+import com.vimal.andoidbase.ktx.PreferenceHelper.get
+import com.vimal.andoidbase.ktx.PreferenceHelper.set
 import com.vimal.mynote.data.repositories.PreferenceProvider
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

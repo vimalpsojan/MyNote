@@ -1,6 +1,7 @@
 package com.vimal.apihelper.di
 
 import android.util.Log
+import com.vimal.apihelper.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +46,10 @@ class ApplicationModule {
             }
             // Apply to All Requests
             defaultRequest {
+                host = BuildConfig.BASE_URL
+                url {
+                    protocol = URLProtocol.HTTP
+                }
 //                header("key","value")
 //                parameter("api_key", "some_api_key")
 

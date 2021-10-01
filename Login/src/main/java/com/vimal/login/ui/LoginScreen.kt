@@ -27,14 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.google.accompanist.insets.systemBarsPadding
-import com.vimal.core.models.Event
-import com.vimal.core.models.LoadingMessageData
-import com.vimal.mynote.R
-import com.vimal.mynote.ui.theme.MyNoteTheme
-import com.vimal.mynote.ui.utils.InsetAwareTopAppBar
-import com.vimal.mynote.ui.utils.OutLIneInput
-import com.vimal.mynote.ui.utils.OutLInePasswordInput
-import com.vimal.mynote.ui.utils.isScrolled
+import com.vimal.andoidbase.models.Event
+import com.vimal.andoidbase.models.LoadingMessageData
+import com.vimal.login.R
+import com.vimal.uiutils.ui.theme.MyNoteTheme
+import com.vimal.uiutils.ui.utils.InsetAwareTopAppBar
+import com.vimal.uiutils.ui.utils.OutLIneInput
+import com.vimal.uiutils.ui.utils.OutLInePasswordInput
+import com.vimal.uiutils.ui.utils.isScrolled
 
 @Composable
 fun LoginScreen(

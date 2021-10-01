@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.31'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$kotlinVersion"
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+
+def Base_URL = '"http://api.mynote.com/DemoApi/"'
 
 android {
     compileSdk 31
@@ -14,7 +16,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String", "BASE_URL", Base_URL)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }

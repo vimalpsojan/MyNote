@@ -13,9 +13,13 @@ import javax.inject.Inject
 class LoginViewDataSource @Inject constructor(private val client: HttpClient) : BaseRemote(),
     LoginRepository {
 
+    companion object{
+        const val LOGIN = "login"
+    }
+
     override suspend fun login(userName: String, password: String): APIResult<LoginResponse> {
         return try {
-            client.post<DefaultResponse<LoginResponse>>("") {
+            client.post<DefaultResponse<LoginResponse>>(LOGIN) {
                 body = LoginRequest(userName, password)
             }.createResult()
         } catch (t: Throwable) {

@@ -1,8 +1,8 @@
 package com.vimal.login.ui
 
+import com.vimal.core.viewmodel.BaseViewModel
+import com.vimal.core.vnavigation.MainDestinations
 import com.vimal.login.data.repositories.LoginRepository
-import com.vimal.mynote.ui.BaseViewModel
-import com.vimal.mynote.ui.MainDestinations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -73,6 +73,7 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
                     }
                 }
             }catch (ex:Exception){
+                ex.printStackTrace()
                 withContext(Dispatchers.Main){
                     hideLoading()
                 }
