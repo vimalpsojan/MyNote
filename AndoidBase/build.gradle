@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -36,6 +38,9 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_viewmodel_compose"
     implementation "androidx.preference:preference-ktx:$preference_version"
+
+    implementation "com.google.dagger:hilt-android:$hilt_versiom"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_versiom"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"

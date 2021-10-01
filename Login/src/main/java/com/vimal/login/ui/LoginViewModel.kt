@@ -41,11 +41,11 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
     }
 
     private fun validateUserName(showError: Boolean = false): Boolean {
-        return _userName.value.isNotBlank() && _userName.value?.length ?: 0 >= 5
+        return _userName.value.isNotBlank() && _userName.value.length ?: 0 >= 5
     }
 
     private fun validatePassword(showError: Boolean = false): Boolean {
-        return _password.value.isNotBlank() && _password.value?.length ?: 0 >= 5
+        return _password.value.isNotBlank() && _password.value.length ?: 0 >= 5
     }
 
     val onLogin: () -> Unit = {
