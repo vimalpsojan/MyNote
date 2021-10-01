@@ -1,5 +1,6 @@
 package com.vimal.login.ui
 
+import com.vimal.andoidbase.models.MessageData
 import com.vimal.core.viewmodel.BaseViewModel
 import com.vimal.core.vnavigation.MainDestinations
 import com.vimal.login.data.repositories.LoginRepository
@@ -70,14 +71,28 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
                         )
                     }else{
                         hideLoading()
+                        showInfoMessage(getMessage(true))
                     }
                 }
             }catch (ex:Exception){
                 ex.printStackTrace()
                 withContext(Dispatchers.Main){
                     hideLoading()
+                    showInfoMessage(getMessage(false))
                 }
             }
         }
+    }
+
+    fun getMessage(isLoginFail:Boolean):MessageData{
+        val messageData = MessageData()
+        messageData.autoDismiss = isLoginFail
+        messageData.titleStr = if(isLoginFail) "Login Failed" else "Failed"
+        messageData.messageStr = if(isLoginFail) "Wrong Username or Password"  else "Network Error"
+        if(!isLoginFail){
+            messageData.positiveButtonStr = "Try Again"
+            messageData.positiveAction = onLogin
+        }
+        return messageData
     }
 }

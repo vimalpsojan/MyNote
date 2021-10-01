@@ -11,6 +11,7 @@ open class MessageData constructor() {
     var negativeAction: (() -> Unit)? = null
     var triggerActionOnDismiss: Boolean = false
     var canDismiss: Boolean = true
+    var autoDismiss: Boolean = true
 
     fun getTitle(): String? {
         return titleStr

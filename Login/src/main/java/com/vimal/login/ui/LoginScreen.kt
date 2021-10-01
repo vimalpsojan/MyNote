@@ -9,9 +9,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -29,12 +27,16 @@ import androidx.constraintlayout.compose.Dimension
 import com.google.accompanist.insets.systemBarsPadding
 import com.vimal.andoidbase.models.Event
 import com.vimal.andoidbase.models.LoadingMessageData
+import com.vimal.andoidbase.models.MessageData
 import com.vimal.login.R
 import com.vimal.uiutils.ui.theme.MyNoteTheme
 import com.vimal.uiutils.ui.utils.InsetAwareTopAppBar
 import com.vimal.uiutils.ui.utils.OutLIneInput
 import com.vimal.uiutils.ui.utils.OutLInePasswordInput
 import com.vimal.uiutils.ui.utils.isScrolled
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
 
 @Composable
 fun LoginScreen(
@@ -45,6 +47,7 @@ fun LoginScreen(
     val password by viewModel.password.collectAsState()
     val enableLogin by viewModel.enableLogin.collectAsState()
     val loadingMessageData by viewModel.loading.collectAsState()
+    val error by viewModel.infoMessage.collectAsState()
     LoginScreen(
         userName = userName,
         onUserNmeChange = viewModel.onUserName,
@@ -53,6 +56,7 @@ fun LoginScreen(
         enableLogin = enableLogin,
         onLogin = viewModel.onLogin,
         loadingMessageData = loadingMessageData,
+        infoMessage = error,
         scaffoldState = scaffoldState
     )
 }
@@ -66,12 +70,37 @@ fun LoginScreen(
     enableLogin: Boolean,
     onLogin: () -> Unit,
     loadingMessageData: Event<LoadingMessageData>? = null,
+    infoMessage: Event<MessageData>? = null,
     scaffoldState: ScaffoldState
 ) {
     val scrollState = rememberLazyListState()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val channel = remember { Channel<MessageData>(Channel.CONFLATED) }
+    LaunchedEffect(key1 = channel){
+        channel.receiveAsFlow().collect {messageData ->
+            val result = snackbarHostState.showSnackbar(
+                message = messageData.getMessage()?:"",
+                duration = if(messageData.autoDismiss) SnackbarDuration.Short else SnackbarDuration.Indefinite,
+                actionLabel = messageData.positiveButtonStr
+            )
+            when (result) {
+                SnackbarResult.ActionPerformed -> {
+                    messageData.positiveAction?.invoke()
+                }
+                SnackbarResult.Dismissed -> {
+                    if(messageData.triggerActionOnDismiss){
+                        messageData.positiveAction?.invoke()
+                    }
+                }
+            }
+        }
+    }
+    infoMessage?.get()?.let {
+        channel.trySend(it)
+    }
     Scaffold(
         scaffoldState = scaffoldState,
-        snackbarHost = { SnackbarHost(hostState = it, modifier = Modifier.systemBarsPadding()) },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState, modifier = Modifier.systemBarsPadding()) },
         topBar = {
             val title = stringResource(id = R.string.app_name)
             InsetAwareTopAppBar(
