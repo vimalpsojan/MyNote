@@ -96,7 +96,6 @@ fun LoginScreen(
                         )
                     }
                 },
-                backgroundColor = MaterialTheme.colors.surface,
                 elevation = if (!scrollState.isScrolled) 0.dp else 4.dp
             )
         }
@@ -129,7 +128,7 @@ fun CreteLoginForm(
     ConstraintLayout(
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 20.dp, end = 20.dp, top = 0.dp, bottom = 0.dp)
+            .padding(start = 20.dp, end = 20.dp, top = 50.dp, bottom = 0.dp)
     ) {
         val (usernameTxt, passwordTxt, loginBtn) = createRefs()
         val localFocusManager = LocalFocusManager.current
@@ -184,7 +183,10 @@ fun CreteLoginForm(
             })
         } else {
             Button(
-                onClick = onLogin,
+                onClick = {
+                    localFocusManager.clearFocus()
+                    onLogin()
+                },
                 enabled = enableLogin,
                 modifier = Modifier.constrainAs(loginBtn) {
                     start.linkTo(passwordTxt.start)

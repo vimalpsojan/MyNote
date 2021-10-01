@@ -74,7 +74,6 @@ fun HomeScreen(
                         )
                     }
                 },
-                backgroundColor = MaterialTheme.colors.surface,
                 elevation = if (!scrollState.isScrolled) 0.dp else 4.dp
             )
         }

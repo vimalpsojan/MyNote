@@ -39,6 +39,12 @@ class DefaultPreference @Inject constructor(@ApplicationContext context: Context
         sharedPreferences[Fields.AUTH_TOKEN] = token
     }
 
+    override fun setLoginData(firstName: String?, lastName: String?, auth: String?) {
+        sharedPreferences[Fields.AUTH_TOKEN] = auth
+        sharedPreferences[Fields.FIRST_NAME] = firstName
+        sharedPreferences[Fields.LAST_NAME] = lastName
+    }
+
     override fun setValue(key: String, value: Any?) {
         sharedPreferences[key] = value
     }

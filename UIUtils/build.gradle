@@ -50,6 +50,11 @@ dependencies {
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
     implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
 }
