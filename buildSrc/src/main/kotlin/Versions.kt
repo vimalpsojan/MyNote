@@ -1,4 +1,9 @@
+import org.gradle.api.JavaVersion
+
 object Versions {
+
+    const val jetbrains_compose = "1.0.0-alpha3"
+
     const val jvmTarget = "1.8"
     const val kotlinVersion = "1.5.21"
     const val core_ktx = "1.6.0"
@@ -22,4 +27,21 @@ object Versions {
     const val junit = "4.13.2"
     const val test_ext_junit = "1.1.3"
     const val espresso_core = "3.4.0"
+}
+
+object Configs{
+    const val group = "com.vimal.mynote"
+    const val version = "com.vimal.mynote"
+}
+
+object AndroidConfig{
+    const val compileSdkVersion = 31
+    const val minSdkVersion = 21
+    const val targetSdkVersion = 31
+    val sourceCompatibility = JavaVersion.VERSION_1_8
+    val targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+object DesktopConfig{
+    const val jvmTarget = "11"
 }

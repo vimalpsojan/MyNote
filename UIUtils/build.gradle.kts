@@ -1,21 +1,21 @@
 import org.jetbrains.compose.compose
 
-val  kotlinVersion = "1.5.21"
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-alpha3"
+    id("org.jetbrains.compose") version Versions.jetbrains_compose
     id("com.android.library")
-    id("kotlin-android-extensions")
 }
 
-group = "com.vimal.mynote"
-version = "1.0"
+group = Configs.group
+version = Configs.version
+
+
 
 kotlin {
     android()
     jvm("desktop") {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = DesktopConfig.jvmTarget
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -36,13 +36,18 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.appcompat:appcompat:1.2.0")
-                api("androidx.core:core-ktx:1.3.1")
+                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+//                implementation("androidx.compose.ui:ui:${Versions.compose_version}")
+//                implementation("androidx.compose.material:material:${Versions.compose_version}")
+//                implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
+//                debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:${Versions.junit}")
+                implementation("androidx.test.ext:junit:${Versions.test_ext_junit}")
+                implementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
             }
         }
         val desktopMain by getting {
@@ -55,21 +60,32 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(31)
-//    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    compileSdkVersion(AndroidConfig.compileSdkVersion)
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdkVersion(AndroidConfig.minSdkVersion)
+        targetSdkVersion(AndroidConfig.targetSdkVersion)
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.pro")
+        }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = AndroidConfig.sourceCompatibility
+        targetCompatibility = AndroidConfig.targetCompatibility
     }
     buildFeatures{
         compose = true
     }
     composeOptions{
-        kotlinCompilerExtensionVersion = "1.0.2"
-        kotlinCompilerVersion = "1.5.21"
+        kotlinCompilerExtensionVersion = Versions.compose_version
+        kotlinCompilerVersion = Versions.kotlinVersion
+    }
+    packagingOptions{
+        resources{
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }

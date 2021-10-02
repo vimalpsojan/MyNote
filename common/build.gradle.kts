@@ -2,19 +2,18 @@ import org.jetbrains.compose.compose
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-alpha3"
+    id("org.jetbrains.compose") version Versions.jetbrains_compose
     id("com.android.library")
-    id("kotlin-android-extensions")
 }
 
-group = "com.vimal.mynote"
-version = "1.0"
+group = Configs.group
+version = Configs.version
 
 kotlin {
     android()
     jvm("desktop") {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = DesktopConfig.jvmTarget
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -26,6 +25,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api(project(":UIUtils"))
             }
         }
         val commonTest by getting {
@@ -35,13 +35,13 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.appcompat:appcompat:1.2.0")
-                api("androidx.core:core-ktx:1.3.1")
+                implementation("androidx.appcompat:appcompat:${Versions.app_compat}")
+                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:${Versions.junit}")
             }
         }
         val desktopMain by getting {
@@ -54,14 +54,14 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdkVersion(AndroidConfig.compileSdkVersion)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdkVersion(AndroidConfig.minSdkVersion)
+        targetSdkVersion(AndroidConfig.targetSdkVersion)
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = AndroidConfig.sourceCompatibility
+        targetCompatibility = AndroidConfig.targetCompatibility
     }
 }
