@@ -11,15 +11,13 @@ repositories {
     mavenCentral()
 }
 
-val compose_version = "1.0.2"
-val activity_compose = "1.3.1"
 dependencies {
     implementation(project(":common"))
-    implementation( "androidx.compose.ui:ui:$compose_version")
-    implementation ("androidx.compose.material:material:$compose_version")
-    implementation ("androidx.compose.ui:ui-tooling-preview:$compose_version")
-    debugImplementation ("androidx.compose.ui:ui-tooling:$compose_version")
-    implementation ("androidx.activity:activity-compose:$activity_compose")
+    implementation( "androidx.compose.ui:ui:${Versions.compose_version}")
+    implementation ("androidx.compose.material:material:${Versions.compose_version}")
+    implementation ("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
+    debugImplementation ("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
+    implementation ("androidx.activity:activity-compose:${Versions.activity_compose}")
 }
 
 android {

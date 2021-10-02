@@ -13,4 +13,5 @@ rootProject.name = "MyNote"
 include(":android")
 include(":desktop")
 include(":common")
+include(":UIUtils")
 
