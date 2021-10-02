@@ -8,7 +8,7 @@ group = "com.vimal.mynote"
 version = "1.0"
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 val compose_version = "1.0.2"
