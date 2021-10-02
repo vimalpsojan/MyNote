@@ -6,7 +6,7 @@ plugins {
     id("com.android.library")
 }
 
-group = "com.vimal.uiutils"
+group = "com.vimal.base"
 version = "1.0.0"
 
 
@@ -34,6 +34,24 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        val androidMain by getting {
+            dependencies {
+                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+            }
+        }
+        val androidTest by getting {
+            dependencies {
+                implementation("junit:junit:${Versions.junit}")
+                implementation("androidx.test.ext:junit:${Versions.test_ext_junit}")
+                implementation("androidx.test.espresso:espresso-core:${Versions.espresso_core}")
+            }
+        }
+        val desktopMain by getting {
+            dependencies {
+                api(compose.preview)
+            }
+        }
+        val desktopTest by getting
     }
 }
 

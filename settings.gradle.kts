@@ -14,4 +14,5 @@ include(":android")
 include(":desktop")
 include(":common")
 include(":UIUtils")
+include(":Base")
 

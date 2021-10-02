@@ -6,8 +6,8 @@ plugins {
     id("com.android.library")
 }
 
-group = Configs.group
-version = Configs.version
+group = "com.vimal.mynote.common"
+version = "1.0.0"
 
 kotlin {
     android()
@@ -37,6 +37,7 @@ kotlin {
             dependencies {
                 implementation("androidx.appcompat:appcompat:${Versions.app_compat}")
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+                implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
             }
         }
         val androidTest by getting {
