@@ -15,4 +15,6 @@ include(":desktop")
 include(":common")
 include(":UIUtils")
 include(":Base")
+include(":Core")
+include(":APIHelper")
 

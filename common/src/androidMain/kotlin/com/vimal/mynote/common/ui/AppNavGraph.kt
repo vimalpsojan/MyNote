@@ -3,7 +3,7 @@ package com.vimal.mynote.common.ui
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.vimal.mynote.common.navigation.MainDestinations
+import com.vimal.core.navigation.MainDestinations
 
 @Composable
 fun AppNavGraph(

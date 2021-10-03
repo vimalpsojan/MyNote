@@ -3,6 +3,7 @@ import org.jetbrains.compose.compose
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version Versions.jetbrains_compose
+    id("org.jetbrains.kotlin.plugin.serialization") version Versions.kotlinVersion
     id("com.android.library")
 }
 
@@ -25,6 +26,12 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
+                implementation("io.ktor:ktor-client-json:${Versions.ktorVersion}")
+                implementation("io.ktor:ktor-client-serialization:${Versions.ktorVersion}")
+                implementation("io.ktor:ktor-client-logging:${Versions.ktorVersion}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinx_serialization_json}")
+                implementation("io.insert-koin:koin-core:${Versions.koin_version}")
             }
         }
         val commonTest by getting {
@@ -35,7 +42,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.preference:preference-ktx:${Versions.preference_version}")
+                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
             }
         }
         val androidTest by getting {
@@ -48,6 +55,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 api(compose.preview)
+                implementation("io.ktor:ktor-client-apache:${Versions.ktorVersion}")
             }
         }
         val desktopTest by getting

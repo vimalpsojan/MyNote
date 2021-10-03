@@ -7,6 +7,6 @@ import com.vimal.uiutils.ui.theme.MyNoteTheme
 fun App() {
     MyNoteTheme {
         FeatureNotReadyYet()
-//        SetupNavGraph()
+        SetupNavGraph()
     }
 }

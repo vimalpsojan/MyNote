@@ -9,8 +9,6 @@ plugins {
 group = "com.vimal.uiutils"
 version = "1.0.0"
 
-
-
 kotlin {
     android()
     jvm("desktop") {

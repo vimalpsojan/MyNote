@@ -6,7 +6,7 @@ plugins {
     id("com.android.library")
 }
 
-group = "com.vimal.base"
+group = "com.vimal.core"
 version = "1.0.0"
 
 kotlin {
@@ -25,6 +25,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api(project(":Base"))
             }
         }
         val commonTest by getting {
@@ -35,7 +36,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.preference:preference-ktx:${Versions.preference_version}")
             }
         }
         val androidTest by getting {

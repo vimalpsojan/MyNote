@@ -25,7 +25,8 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                api(project(":UIUtils"))
+                implementation(project(":UIUtils"))
+                implementation(project(":Core"))
             }
         }
         val commonTest by getting {
