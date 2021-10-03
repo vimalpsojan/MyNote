@@ -40,7 +40,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel,
+    viewModel: AndroidLoginViewModel,
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     val userName by viewModel.userName.collectAsState()

@@ -36,7 +36,7 @@ kotlin {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
                 implementation("androidx.preference:preference-ktx:${Versions.preference_version}")
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}")
+                api("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}")
             }
         }
         val androidTest by getting {

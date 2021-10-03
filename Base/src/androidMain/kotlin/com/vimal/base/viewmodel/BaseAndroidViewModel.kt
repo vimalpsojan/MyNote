@@ -7,4 +7,7 @@ abstract class BaseAndroidViewModel<Navigation, T : ComposeBaseViewModel<Navigat
     fun setNavigationActions(navigationActions: NavigationActions<Navigation>) {
         viewModel.navigationActions = navigationActions
     }
+
+    val loading = viewModel.loading
+    val infoMessage = viewModel.infoMessage
 }

@@ -45,6 +45,7 @@ kotlin {
                 implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
                 implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
                 implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
+                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
             }
         }
         val androidTest by getting {
