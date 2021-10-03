@@ -6,7 +6,7 @@ plugins {
     id("com.android.library")
 }
 
-group = "com.vimal.uiutils"
+group = "com.vimal.resources"
 version = "1.0.0"
 
 kotlin {
@@ -22,18 +22,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
-                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
-                implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.constraintlayout_compose}")
-                implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist_version}")
             }
         }
         val commonTest by getting {

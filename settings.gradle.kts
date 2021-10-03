@@ -17,4 +17,5 @@ include(":UIUtils")
 include(":Base")
 include(":Core")
 include(":APIHelper")
-
+include(":Login")
+include(":Resources")
