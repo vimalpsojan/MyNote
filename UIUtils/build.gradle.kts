@@ -6,7 +6,7 @@ plugins {
     id("com.android.library")
 }
 
-group = "com.vimal.mynote.common"
+group = "com.vimal.uiutils"
 version = "1.0.0"
 
 kotlin {
@@ -25,8 +25,6 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                implementation(project(":UIUtils"))
-                implementation(project(":Core"))
             }
         }
         val commonTest by getting {
@@ -34,24 +32,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("androidx.appcompat:appcompat:${Versions.app_compat}")
-                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
-            }
-        }
-        val androidTest by getting {
-            dependencies {
-                implementation("junit:junit:${Versions.junit}")
-            }
-        }
-        val desktopMain by getting {
-            dependencies {
-                api(compose.preview)
-            }
-        }
-        val desktopTest by getting
     }
 }
 
@@ -62,8 +42,26 @@ android {
         minSdkVersion(AndroidConfig.minSdkVersion)
         targetSdkVersion(AndroidConfig.targetSdkVersion)
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.pro")
+        }
+    }
     compileOptions {
         sourceCompatibility = AndroidConfig.sourceCompatibility
         targetCompatibility = AndroidConfig.targetCompatibility
+    }
+    buildFeatures{
+        compose = true
+    }
+    composeOptions{
+        kotlinCompilerExtensionVersion = Versions.compose_version
+        kotlinCompilerVersion = Versions.kotlinVersion
+    }
+    packagingOptions{
+        resources{
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }

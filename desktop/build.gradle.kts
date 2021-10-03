@@ -3,16 +3,16 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.0.0-alpha3"
+    id("org.jetbrains.compose") version Versions.jetbrains_compose
 }
 
 group = "com.vimal.mynote"
-version = "1.0"
+version = "1.0.0"
 
 kotlin {
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = DesktopConfig.jvmTarget
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
