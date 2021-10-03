@@ -26,7 +26,8 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 implementation(project(":UIUtils"))
-                implementation(project(":Core"))
+                api(project(":Core"))
+                implementation("io.insert-koin:koin-core:${Versions.koin_version}")
             }
         }
         val commonTest by getting {
@@ -38,7 +39,11 @@ kotlin {
             dependencies {
                 implementation("androidx.appcompat:appcompat:${Versions.app_compat}")
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+                implementation("androidx.compose.ui:ui:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
                 implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
+                implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
             }
         }
         val androidTest by getting {

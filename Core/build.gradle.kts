@@ -26,6 +26,7 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 api(project(":Base"))
+                api(project(":APIHelper"))
             }
         }
         val commonTest by getting {
@@ -36,6 +37,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}")
             }
         }
         val androidTest by getting {

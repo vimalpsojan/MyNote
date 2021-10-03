@@ -21,7 +21,7 @@ dependencies {
 //    implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist_version}")
 //    implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist_version}")
 //    implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
-//    implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
+    implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
 //    implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
 //    implementation("io.ktor:ktor-client-json:${Versions.ktorVersion}")
 //    implementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktorVersion}")
