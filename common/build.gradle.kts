@@ -30,6 +30,7 @@ kotlin {
                 implementation("io.insert-koin:koin-core:${Versions.koin_version}")
                 implementation(project(":Login"))
                 implementation(project(":Home"))
+                implementation("io.ktor:ktor-client-core:${Versions.ktorVersion}")
             }
         }
         val commonTest by getting {
@@ -46,7 +47,6 @@ kotlin {
                 implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
                 implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
                 implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
-                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
             }
         }
         val androidTest by getting {

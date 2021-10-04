@@ -23,6 +23,7 @@ kotlin {
             dependencies {
                 implementation(project(":common"))
                 implementation(compose.desktop.currentOs)
+                implementation("io.insert-koin:koin-core:${Versions.koin_version}")
             }
         }
         val jvmTest by getting {

@@ -26,7 +26,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
+                implementation("io.ktor:ktor-client-core:${Versions.ktorVersion}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktorVersion}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktorVersion}")
                 implementation("io.ktor:ktor-client-logging:${Versions.ktorVersion}")
