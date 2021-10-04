@@ -2,7 +2,7 @@ package com.vimal.mynote
 
 import android.app.Application
 import com.vimal.apihelper.di.HttpModule.httpModule
-import com.vimal.mynote.AndroidDI.androidModule
+import com.vimal.mynote.di.AndroidDI.androidModule
 import com.vimal.mynote.common.di.CommonDI.commonModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin

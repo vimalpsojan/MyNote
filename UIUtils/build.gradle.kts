@@ -27,6 +27,15 @@ kotlin {
                 api(compose.material)
             }
         }
+        val androidMain by getting {
+            dependencies {
+                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
+                implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.constraintlayout_compose}")
+                implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist_version}")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))

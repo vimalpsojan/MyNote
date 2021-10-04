@@ -37,7 +37,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}")
             }
         }
         val androidTest by getting {
