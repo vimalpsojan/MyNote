@@ -1,5 +1,6 @@
 package com.vimal.mynote.common.di
 
+import com.vimal.home.ui.HomeViewModel
 import com.vimal.login.data.datasources.LoginRemoteDataSource
 import com.vimal.login.data.datasources.LoginViewDataSource
 import com.vimal.login.data.repositories.LoginRepository
@@ -17,6 +18,7 @@ object CommonDI {
 
         factory { SplashViewModel(get()) }
         factory { LoginViewModel(get()) }
+        factory { HomeViewModel() }
 
     }
 }
