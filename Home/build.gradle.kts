@@ -3,10 +3,11 @@ import org.jetbrains.compose.compose
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version Versions.jetbrains_compose
+    id("org.jetbrains.kotlin.plugin.serialization") version Versions.kotlinVersion
     id("com.android.library")
 }
 
-group = "com.vimal.mynote.common"
+group = "com.vimal.home"
 version = "1.0.0"
 
 kotlin {
@@ -25,11 +26,22 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                implementation(project(":UIUtils"))
-                api(project(":Core"))
-                implementation("io.insert-koin:koin-core:${Versions.koin_version}")
-                implementation(project(":Login"))
-                implementation(project(":Home"))
+                implementation (project(":Core"))
+                implementation (project(":UIUtils"))
+                implementation(project(":Resources"))
+                implementation ("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
+                implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinx_serialization_json}")
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
+                implementation("androidx.compose.ui:ui:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
+                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
+                implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.constraintlayout_compose}")
+                implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist_version}")
             }
         }
         val commonTest by getting {
@@ -37,29 +49,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("androidx.appcompat:appcompat:${Versions.app_compat}")
-                implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-                implementation("androidx.compose.ui:ui:${Versions.compose_version}")
-                implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose_version}")
-                implementation("androidx.compose.ui:ui-tooling:${Versions.compose_version}")
-                implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
-                implementation("io.insert-koin:koin-androidx-compose:${Versions.koin_version}")
-                implementation("io.ktor:ktor-client-okhttp:${Versions.ktorVersion}")
-            }
-        }
-        val androidTest by getting {
-            dependencies {
-                implementation("junit:junit:${Versions.junit}")
-            }
-        }
-        val desktopMain by getting {
-            dependencies {
-                api(compose.preview)
-            }
-        }
-        val desktopTest by getting
     }
 }
 
@@ -70,8 +59,26 @@ android {
         minSdkVersion(AndroidConfig.minSdkVersion)
         targetSdkVersion(AndroidConfig.targetSdkVersion)
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.pro")
+        }
+    }
     compileOptions {
         sourceCompatibility = AndroidConfig.sourceCompatibility
         targetCompatibility = AndroidConfig.targetCompatibility
+    }
+    buildFeatures{
+        compose = true
+    }
+    composeOptions{
+        kotlinCompilerExtensionVersion = Versions.compose_version
+        kotlinCompilerVersion = Versions.kotlinVersion
+    }
+    packagingOptions{
+        resources{
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
